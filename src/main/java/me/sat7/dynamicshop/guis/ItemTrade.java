@@ -205,7 +205,9 @@ public final class ItemTrade extends InGameUI
 
             if (!sameworld)
             {
-                deliverycharge = -1;
+                Location lo = new Location(player.getWorld(), x1, y1, z1);
+                int dist = (int) (player.getLocation().distance(lo) * 0.1 * DynamicShop.plugin.getConfig().getDouble("Shop.DeliveryChargeScale"));
+                deliverycharge = Clamp(dist, DynamicShop.plugin.getConfig().getInt("Shop.DeliveryChargeMin")+1000, DynamicShop.plugin.getConfig().getInt("Shop.DeliveryChargeMax")+1000);
             } else if (outside)
             {
                 Location lo = new Location(player.getWorld(), x1, y1, z1);
